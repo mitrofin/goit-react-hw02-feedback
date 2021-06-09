@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+/* import PropTypes from 'prop-types'; */
+import Statistics from './components/Statistics/Statistics';
+import './index.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = { good: 0, neutral: 0, bad: 0 };
+
+  feedbackHandler = e => {
+    this.setState(prevState => {
+      const buttonId = e.target.id;
+      return {
+        [buttonId]: prevState[buttonId] + 1,
+      };
+    });
+  };
 }
-
-export default App;
