@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 /* import PropTypes from 'prop-types'; */
 import Statistics from './components/Statistics/Statistics';
+import Section from './components/Section/Section';
+import Notification from './components/Notification/Notification';
+import Feedback from './components/Feedback/Feedback';
 import './index.css';
 
 export default class App extends Component {
@@ -14,6 +17,13 @@ export default class App extends Component {
       };
     });
   };
+  countTotalFeedback = () =>
+    Object.values(this.state).reduce((acc, value) => acc + value, 0);
+
+  countPositiveFeedbackPercentage = () => {
+    return Math.round((100 / this.countTotalFeedback()) * this.state.good);
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
     const feedbacksTotalAmount = this.countTotalFeedback();
